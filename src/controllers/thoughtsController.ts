@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Thought } from '../models/index.js';
+import { Thoughts } from '../models/index.js';
 
 /**
  * GET All Thoughts /thoughts
@@ -7,8 +7,8 @@ import { Thought } from '../models/index.js';
 */
 export const getAllThoughts = async(_req: Request, res: Response) => {
     try {
-        const thoughtss = await Thoughts.find();
-        res.json(thoughtss);
+        const thoughts = await Thoughts.find();
+        res.json(thoughts);
     } catch(error: any){
         res.status(500).json({
             message: error.message
