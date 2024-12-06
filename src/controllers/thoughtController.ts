@@ -24,12 +24,12 @@ export const getAllThoughts = async(_req: Request, res: Response) => {
 export const getThoughtsById = async (req: Request, res: Response) => {
     const { thoughtsId } = req.params;
     try {
-      const student = await Thoughts.findById(thoughtsId);
-      if(student) {
-        res.json(student);
+      const thoughts = await Thoughts.findById(thoughtsId);
+      if(thoughts) {
+        res.json(thoughts);
       } else {
         res.status(404).json({
-          message: 'Volunteer not found'
+          message: 'Thought not found'
         });
       }
     } catch (error: any) {

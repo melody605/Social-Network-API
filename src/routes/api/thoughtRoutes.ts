@@ -6,16 +6,22 @@ import {
   createThoughts,
   updateThoughts,
   deleteThoughts,
-} from '../../controllers/thoughtsController.js';
+  addThoughts, 
+  removeThoughts,
+} 
+from '../../controllers/thoughtController.js';
 
-// /api/thoughtss
+// /api/thoughts
 router.route('/').get(getAllThoughts).post(createThoughts);
 
-// /api/thoughtss/:thoughtsId
+// /api/thoughts/:thoughtsId
 router
   .route('/:thoughtsId')
   .get(getThoughtsById)
   .put(updateThoughts)
   .delete(deleteThoughts);
+
+router.route('/:thoughtId/reactions').post(addThoughts);
+router.route('/:thoughtId/reactions/:reactionId').delete(removeThoughts)
 
 export { router as thoughtsRouter };
