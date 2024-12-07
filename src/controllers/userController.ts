@@ -32,6 +32,8 @@ export const getUserById = async (req: Request, res: Response) => {
           message: 'Volunteer not found'
         });
       }
+      res.json({ message: 'User deleted successfully' });
+      res.json({ message: 'User deleted successfully' });
     } catch (error: any) {
       res.status(500).json({
         message: error.message
@@ -104,3 +106,43 @@ export const deleteUser = async (req: Request, res: Response) => {
       });
     }
   };
+export const addFriend = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params.userId,
+      { $addToSet: { friends: req.params.friendId } },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user with this id!' });
+    }
+
+    return res.json(user);
+  } catch (error: any) {
+    return res.status(500).json({
+      message: error.message
+    });
+  }
+};
+
+export const removeFriend = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params.userId,
+      { $pull: { friends: req.params.friendId } },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: 'No user with this id!' });
+    }
+
+    return res.json(user);
+  } catch (error: any) {
+    return res.status(500).json({
+      message: error.message
+    });
+  }
+};
+    
