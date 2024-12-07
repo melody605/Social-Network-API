@@ -40,7 +40,7 @@ export const getThoughtsById = async (req: Request, res: Response) => {
   };
 
   /**
- * POST Thoughts /thoughtss
+ * POST Thoughts /thoughts
  * @param object thoughtsname
  * @returns a single Thoughts object
 */
@@ -89,6 +89,41 @@ export const updateThoughts = async (req: Request, res: Response) => {
  * @returns string 
 */
 export const deleteThoughts = async (req: Request, res: Response) => {
+    try {
+      const thoughts = await Thoughts.findOneAndDelete({ _id: req.params.thoughtsId});
+      
+      if(!thoughts) {
+        res.status(404).json({
+          message: 'No thoughts with that ID'
+        });
+      }
+      
+    } catch (error: any) {
+      res.status(500).json({
+        message: error.message
+      });
+    }
+  };
+
+  export const removeThoughts = async (req: Request, res: Response) => {
+    try {
+      const thoughts = await Thoughts.findOneAndDelete({ _id: req.params.thoughtsId});
+      
+      if(!thoughts) {
+        res.status(404).json({
+          message: 'No thoughts with that ID'
+        });
+      }
+      
+    } catch (error: any) {
+      res.status(500).json({
+        message: error.message
+      });
+    }
+  };
+
+
+  export const addThoughts = async (req: Request, res: Response) => {
     try {
       const thoughts = await Thoughts.findOneAndDelete({ _id: req.params.thoughtsId});
       

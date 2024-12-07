@@ -8,8 +8,8 @@ import {
   deleteThoughts,
   addThoughts, 
   removeThoughts,
-} 
-from '../../controllers/thoughtController.js';
+}
+from '../../controllers/thoughtController';
 
 // /api/thoughts
 router.route('/').get(getAllThoughts).post(createThoughts);

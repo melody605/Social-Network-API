@@ -18,4 +18,7 @@ router
   .put(updateUser)
   .delete(deleteUser);
 
+  .route('/:userId/friends/:friendId')
+  .get(addFriend) 
+
 export { router as userRouter };
