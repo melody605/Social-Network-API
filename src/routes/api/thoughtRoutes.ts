@@ -6,8 +6,10 @@ import {
   createThoughts,
   updateThoughts,
   deleteThoughts,
-  addThoughts, 
+  addThoughts,
+  addReaction,
   removeThoughts,
+  removeReaction,
 }
 from '../../controllers/thoughtController';
 
@@ -20,6 +22,11 @@ router
   .get(getThoughtsById)
   .put(updateThoughts)
   .delete(deleteThoughts);
+
+  router
+  .route('/:thoughtId/reactions') 
+  .post(addReaction)
+  .delete(removeReaction);
 
 router.route('/:thoughtId/reactions').post(addThoughts);
 router.route('/:thoughtId/reactions/:reactionId').delete(removeThoughts)

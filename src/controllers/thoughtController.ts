@@ -139,3 +139,38 @@ export const deleteThoughts = async (req: Request, res: Response) => {
       });
     }
   };
+
+  export const addReaction= async (req: Request, res: Response) => {
+    try {
+      const thoughts = await Thoughts.findOneAndDelete({ _id: req.params.thoughtsId});
+      
+      if(!thoughts) {
+        res.status(404).json({
+          message: 'No reactions with that ID'
+        });
+      }
+      
+    } catch (error: any) {
+      res.status(500).json({
+        message: error.message
+      });
+    }
+  };
+
+  export const removeReaction= async (req: Request, res: Response) => {
+    try {
+      const thoughts = await Thoughts.findOneAndDelete({ _id: req.params.thoughtsId});
+      
+      if(!thoughts) {
+        res.status(404).json({
+          message: 'No reactions with that ID'
+        });
+      }
+      
+    } catch (error: any) {
+      res.status(500).json({
+        message: error.message
+      });
+    }
+  };
+
